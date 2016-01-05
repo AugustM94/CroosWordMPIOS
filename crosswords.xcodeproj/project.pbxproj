@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					1FAB8BF71C3BD45A005360CB = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = LG3864Q8PK;
 					};
 				};
 			};
@@ -249,9 +250,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = crosswords/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = drades.www.crosswords;
+				PRODUCT_BUNDLE_IDENTIFIER = augmar.www.crosswords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -260,9 +262,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = crosswords/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = drades.www.crosswords;
+				PRODUCT_BUNDLE_IDENTIFIER = augmar.www.crosswords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
