@@ -30,10 +30,27 @@ class Board {
         }
         let tileType = TileType.Description
         let tile = Tile(tileType: tileType)
+        tile.text = "1"
         tiles[0,0] = tile
     }
     
     func getTilesArray() -> Array2D<Tile>{
         return tiles
+    }
+    
+    //Hard coded solution(Not flexible)
+    func checkIfCrossWordComplete() -> Bool{
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                let tile = tileAtColumn(column, row: row)
+                if tile.tileType == TileType.Writeable {
+                    if tile.text == "A" {
+                        print("You won")
+                        return true
+                    }
+                }
+            }
+        }
+        return false
     }
 }

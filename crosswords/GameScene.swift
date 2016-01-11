@@ -54,7 +54,8 @@ class GameScene: SKScene{
         }
     }
     
-    func updateLabel(column: Int, row: Int, text: String){
+    func updateLabel(column: Int, row: Int){
+        let text = board.tileAtColumn(column, row: row).text!
         let label: SKLabelNode = tileNodes[column,row]?.childNodeWithName("label") as! SKLabelNode
         label.text = text
     }
