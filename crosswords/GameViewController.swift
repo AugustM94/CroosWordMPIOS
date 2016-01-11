@@ -33,7 +33,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         skView.presentScene(scene)
         
         
-        //var arrayTest = Array<Array<Tile>>()
 
         
         
@@ -41,17 +40,21 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     
     func beginGame(){
-        let tiles: Set<Tile> = board.createInitialTiles()
+        board.createInitialTiles()
+        let tiles = board.getTilesArray()
         scene.addSpritesForTiles(tiles)
         scene.addTextFieldForTiles(tiles)
         scene.initializeSelectedTile()
         
-        for tile in tiles {
-            tile.textField!.delegate = self
-            tile.textField?.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
-            self.view.addSubview(tile.textField!)
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                let tile = board.tileAtColumn(column, row: row)
+                tile.textField!.delegate = self
+                tile.textField?.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+                self.view.addSubview(tile.textField!)
+            }
         }
-        
+
     }
     
     func textFieldDidChange(textField: UITextField){
@@ -66,4 +69,5 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
+
 

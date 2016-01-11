@@ -20,20 +20,19 @@ class Board {
     }
 
     
-    func createInitialTiles() -> Set<Tile>{
-        var set = Set<Tile>()
+    func createInitialTiles(){
         
         for row in 0..<numRows {
             for column in 0..<numColumns {
-                var tileType: TileType
-                tileType = TileType.getWriteableTile()
-                let tile = Tile(column: column, row: row, tileType: tileType)
-                
+                let tileType = TileType.getWriteableTile()
+                let tile = Tile(tileType: tileType)
                 tiles[column,row] = tile
-                set.insert(tile)
             }
         }
-        return set
+    }
+    
+    func getTilesArray() -> Array2D<Tile>{
+        return tiles
     }
     
     

@@ -16,29 +16,18 @@ enum TileType: Int{
     }
 }
 
-class Tile: Hashable {
-    var column: Int
-    var row: Int
+class Tile{
     var sprite: SKSpriteNode?
     var textField: UITextField?
     let tileType: TileType
     
-    init(column: Int, row: Int, tileType: TileType){
-        self.column = column
-        self.row = row
+    init(tileType: TileType){
         self.tileType = tileType
         
     }
     
-    var hashValue: Int{
-        return row*2 + column
-    }
-    
-    
+
 }
 
-func ==(lhs: Tile, rhs: Tile) -> Bool{
-    return lhs.column == rhs.column && lhs.row == rhs.row
-}
 
 

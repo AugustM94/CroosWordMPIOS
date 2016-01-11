@@ -48,23 +48,29 @@ class GameScene: SKScene{
     }
     
     
-    func addSpritesForTiles(tiles: Set<Tile>){
-        for tile in tiles{
-            let sprite = SKSpriteNode(imageNamed: "tile")
-            sprite.position = pointForColumn(tile.column,row: tile.row)
-            tileLayer.addChild(sprite)
-            tile.sprite = sprite
+    func addSpritesForTiles(tiles: Array2D<Tile>){
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                let tile = board.tileAtColumn(column, row: row)
+                let sprite = SKSpriteNode(imageNamed: "tile")
+                sprite.position = pointForColumn(column,row: row)
+                tileLayer.addChild(sprite)
+                tile.sprite = sprite
+            }
         }
     }
     
-    func addTextFieldForTiles(tiles: Set<Tile>) {
-        for tile in tiles{
-            let textField = UITextField()
-            textField.frame = CGRectMake(CGFloat(tile.column) * tileWidth + viewSize.width / 2, (CGFloat(tile.row) * tileHeight + viewSize.height / 2) - tileHeight * CGFloat(numRows), tileWidth, tileHeight)
-            //textField.backgroundColor = UIColor.brownColor()
-            textField.textAlignment = .Center
-            tile.textField = textField
-            
+    func addTextFieldForTiles(tiles: Array2D<Tile>) {
+        
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                let tile = board.tileAtColumn(column, row: row)
+                let textField = UITextField()
+                textField.frame = CGRectMake(CGFloat(column) * tileWidth + viewSize.width / 2, (CGFloat(row) * tileHeight + viewSize.height / 2) - tileHeight * CGFloat(numRows), tileWidth,tileHeight)
+                //textField.backgroundColor = UIColor.brownColor()
+                textField.textAlignment = .Center
+                tile.textField = textField
+            }
         }
     }
     
