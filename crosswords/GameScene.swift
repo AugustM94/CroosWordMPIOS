@@ -8,8 +8,6 @@
 import SpriteKit
 import UIKit
 
-
-
 class GameScene: SKScene{
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,7 +23,11 @@ class GameScene: SKScene{
     let textLayer = UIView()
     
     let spriteSelected = SKSpriteNode(imageNamed: "tileSelected")
+    private var tiles = Array2D<Tile>(columns: numColumns, rows: numRows)
+    private var tileNodes = Array2D<SKNode>(columns: numColumns, rows: numColumns)
     
+    var activeColumn: Int!
+    var activeRow: Int!
     var viewSize: CGSize
     
     override init(size: CGSize){
@@ -33,10 +35,7 @@ class GameScene: SKScene{
         super.init(size: size)
         anchorPoint = CGPoint(x:0.5, y:0.5)
         addChild(tileLayer)
-
     }
-    
-
     
     func initializeSelectedTile(){
         spriteSelected.position = CGPoint(x: self.size.width * 5 , y: 0)
@@ -47,55 +46,55 @@ class GameScene: SKScene{
         sprite.position = pointForColumn(column, row: row)
     }
     
-    
     func addSpritesForTiles(tiles: Array2D<Tile>){
         for row in 0..<numRows {
             for column in 0..<numColumns {
-                let tile = board.tileAtColumn(column, row: row)
-                let sprite = SKSpriteNode(imageNamed: "tile")
-                sprite.position = pointForColumn(column,row: row)
-                tileLayer.addChild(sprite)
-                tile.sprite = sprite
+                tileTypeHandler(column, row: row, tileType: board.tileAtColumn(column, row: row).tileType)
             }
         }
     }
     
-    func addTextFieldForTiles(tiles: Array2D<Tile>) {
-        
+    func updateLabel(column: Int, row: Int, text: String){
+        let label: SKLabelNode = tileNodes[column,row]?.childNodeWithName("label") as! SKLabelNode
+        label.text = text
+    }
+    
+    
+    // Sets the view objects for a tile
+    func tileTypeHandler(column: Int, row: Int, tileType: TileType){
+        let sprite = SKSpriteNode(imageNamed: "tile")
+        sprite.position = pointForColumn(column,row: row)
+        var node = tileNodes[column,row]
+        node!.addChild(sprite)
+        let label = SKLabelNode()
+        label.position = pointForColumn(column, row: row)
+        label.name = "label"
+        //Bring the label to front
+        label.zPosition = 1
+        label.verticalAlignmentMode = .Center
+        label.fontName = "HelveuticaNeue-Bold"
+        node!.addChild(label)
+        tileLayer.addChild(node!)
+    }
+    
+    
+    func createInitialTileNodes(){
         for row in 0..<numRows {
             for column in 0..<numColumns {
-                let tile = board.tileAtColumn(column, row: row)
-                let textField = UITextField()
-                textField.frame = CGRectMake(CGFloat(column) * tileWidth + viewSize.width / 2, (CGFloat(row) * tileHeight + viewSize.height / 2) - tileHeight * CGFloat(numRows), tileWidth,tileHeight)
-                //textField.backgroundColor = UIColor.brownColor()
-                textField.textAlignment = .Center
-                tile.textField = textField
+                let node = SKNode()
+                tileNodes[column,row] = node
             }
         }
     }
     
-    
-    
+    func setActiveField(column: Int, row: Int){
+        activeColumn = column
+        activeRow = row
+        print("Selected field: \(activeColumn),\(activeRow)")
+    }
+
     func pointForColumn(column: Int, row: Int) -> CGPoint {
         return CGPoint(x: CGFloat(column) * tileWidth + tileWidth/2, y: CGFloat(row) * tileHeight + tileHeight/2)
-    }
-    
-    //func checkMaxLength(textfield: UITextField!)
-
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        for touch: AnyObject in touches{
-            let location = touch.locationInNode(tileLayer)
-            let (success, column, row) = columnForPoint(location)
-            print(touch)
-            if success{
-                moveSelectedTile(spriteSelected, column: column, row: row)
-                if let tile = board.tileAtColumn(column, row: row){
-                }
-            }
-            
-            
-        }
     }
     
     //Get row and column for clicked tile
@@ -104,18 +103,7 @@ class GameScene: SKScene{
             && point.y >= 0 && point.y <= tileHeight * CGFloat(numRows)){
             return (true, Int(point.x/tileWidth),Int(point.y/tileHeight))
         }
-        
-        
         return (false, 0,0)
     }
-    
-    
-    
-    
-    
-
-    
-    
-    
 
 }

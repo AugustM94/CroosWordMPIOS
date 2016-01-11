@@ -6,19 +6,15 @@
 //  Copyright © 2016 drades. All rights reserved.
 //
 
-import SpriteKit
+
 
 enum TileType: Int{
     // Blank = Completely unused fields(usually marked with a grey field)
-    case Type = 0, Description, Writeable, Blank
-    static func getWriteableTile() -> TileType{
-        return TileType(rawValue: 2)!
-    }
+    case Description, Writeable
 }
 
 class Tile{
-    var sprite: SKSpriteNode?
-    var textField: UITextField?
+    var text: String?
     let tileType: TileType
     
     init(tileType: TileType){
