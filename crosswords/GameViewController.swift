@@ -49,11 +49,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         scene.initializeSelectedTile()
         scene.updateLabel(0, row: 0)
         
-        for row in 0..<numRows {
-            for column in 0..<numColumns {
-                let tile = board.tileAtColumn(column, row: row)
-            }
-        }
     }
     
     

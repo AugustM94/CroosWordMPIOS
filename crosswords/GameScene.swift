@@ -55,7 +55,7 @@ class GameScene: SKScene{
     }
     
     func updateLabel(column: Int, row: Int){
-        let text = board.tileAtColumn(column, row: row).text!
+        let text = board.tileAtColumn(column, row: row).text
         let label: SKLabelNode = tileNodes[column,row]?.childNodeWithName("label") as! SKLabelNode
         label.text = text
     }
@@ -65,7 +65,7 @@ class GameScene: SKScene{
     func tileTypeHandler(column: Int, row: Int, tileType: TileType){
         let sprite = SKSpriteNode(imageNamed: "tile")
         sprite.position = pointForColumn(column,row: row)
-        var node = tileNodes[column,row]
+        let node = tileNodes[column,row]
         node!.addChild(sprite)
         let label = SKLabelNode()
         label.position = pointForColumn(column, row: row)

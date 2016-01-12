@@ -30,7 +30,7 @@ class Board {
         }
         let tileType = TileType.Description
         let tile = Tile(tileType: tileType)
-        tile.text = "1"
+        tile.text = "1:"
         tiles[0,0] = tile
     }
     
