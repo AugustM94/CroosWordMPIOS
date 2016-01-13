@@ -75,7 +75,6 @@ class GameScene: SKScene{
         label.fontName = "HelveuticaNeue-Bold"
         node!.addChild(label)
         tileLayer.addChild(node!)
-        print("tileHandler")
         updateLabel(column, row: row)
     }
     

@@ -15,7 +15,9 @@ enum TileType: Int{
 
 class Tile{
     var text = ""
+    var result = ""
     let tileType: TileType
+    
     
     init(tileType: TileType){
         self.tileType = tileType

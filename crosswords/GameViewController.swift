@@ -11,6 +11,7 @@ import SpriteKit
 class GameViewController: UIViewController, UITextFieldDelegate {
     var scene: GameScene!
     var board: Board!
+    var dataManager: DataManager!
     
     let textField = UITextField()
     
@@ -25,6 +26,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         //Create and configure scene
         board = Board()
         scene = GameScene(size: skView.bounds.size)
+        dataManager = DataManager()
         scene.scaleMode = .AspectFill
         scene.board = board
         
@@ -46,7 +48,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         scene.createInitialTileNodes()
         scene.addSpritesForTiles(board.getTilesArray())
         scene.initializeSelectedTile()
-        
+
     }
     
     
@@ -61,6 +63,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         }
         board.tileAtColumn(scene.activeColumn, row: scene.activeRow).text = recentChar
         scene.updateLabel(scene.activeColumn, row: scene.activeRow)
+        dataManager.parseNewUserInput(scene.activeColumn, row: scene.activeRow, value: recentChar)
         if board.checkIfCrossWordComplete() {
             youWonLabel.hidden = false
         }

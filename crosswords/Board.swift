@@ -48,6 +48,8 @@ class Board {
                         let tile = tiles[column,row]
                         if tile?.tileType == TileType.Description {
                             tile!.text = text
+                        } else if tile?.tileType == TileType.Writeable  {
+                            tile!.result = text
                         }
                     }
                 }
@@ -66,13 +68,14 @@ class Board {
             for column in 0..<numColumns {
                 let tile = tileAtColumn(column, row: row)
                 if tile.tileType == TileType.Writeable {
-                    if tile.text == "A" {
-                        print("You won")
-                        return true
+                    if tile.text != tile.result {
+                        print("\(tile.text) and \(tile.result)")
+                        return false
                     }
                 }
             }
         }
-        return false
+        print("You won")
+        return true
     }
 }

@@ -1,18 +1,9 @@
 {
-    "board" : [[0,1,1],
-               [0,1,1]],
+    "board" : [[0,1,1,1]],
     
-    "content" : [["1:","A","A"],
-                 ["1:","A","A"]
-                 ],
+    "content" : [["1:","C","O","W"]],
     
-    "numColumns": 3,
+    "numColumns": 4,
     
-    "numRows" : 2,
-    
-    
-
-
-
-
+    "numRows" : 1,
 }
