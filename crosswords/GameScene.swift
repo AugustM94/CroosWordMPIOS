@@ -23,7 +23,6 @@ class GameScene: SKScene{
     let textLayer = UIView()
     
     let spriteSelected = SKSpriteNode(imageNamed: "tileSelected")
-    private var tiles = Array2D<Tile>(columns: numColumns, rows: numRows)
     private var tileNodes = Array2D<SKNode>(columns: numColumns, rows: numColumns)
     
     var activeColumn: Int!
@@ -49,7 +48,7 @@ class GameScene: SKScene{
     func addSpritesForTiles(tiles: Array2D<Tile>){
         for row in 0..<numRows {
             for column in 0..<numColumns {
-                tileTypeHandler(column, row: row, tileType: board.tileAtColumn(column, row: row).tileType)
+                tileTypeHandler(column, row: row)
             }
         }
     }
@@ -62,7 +61,7 @@ class GameScene: SKScene{
     
     
     // Sets the view objects for a tile
-    func tileTypeHandler(column: Int, row: Int, tileType: TileType){
+    func tileTypeHandler(column: Int, row: Int){
         let sprite = SKSpriteNode(imageNamed: "tile")
         sprite.position = pointForColumn(column,row: row)
         let node = tileNodes[column,row]
@@ -76,6 +75,8 @@ class GameScene: SKScene{
         label.fontName = "HelveuticaNeue-Bold"
         node!.addChild(label)
         tileLayer.addChild(node!)
+        print("tileHandler")
+        updateLabel(column, row: row)
     }
     
     

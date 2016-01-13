@@ -8,7 +8,7 @@
 
 
 
-enum TileType {
+enum TileType: Int{
     // Blank = Completely unused fields(usually marked with a grey field)
     case Description, Writeable
 }

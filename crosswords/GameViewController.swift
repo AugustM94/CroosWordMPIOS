@@ -23,9 +23,9 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         let skView = view as! SKView
         
         //Create and configure scene
+        board = Board()
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFill
-        board = Board()
         scene.board = board
         
         beginGame()
@@ -44,10 +44,8 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     func beginGame(){
         board.createInitialTiles()
         scene.createInitialTileNodes()
-        let tiles = board.getTilesArray()
-        scene.addSpritesForTiles(tiles)
+        scene.addSpritesForTiles(board.getTilesArray())
         scene.initializeSelectedTile()
-        scene.updateLabel(0, row: 0)
         
     }
     

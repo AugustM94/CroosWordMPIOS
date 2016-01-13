@@ -23,6 +23,7 @@ struct Array2D<T> {
             return array[row*columns + column]
         }
         set {
+            //print("\(columns),\(rows)")
             array[row*columns + column] = newValue
         }
     }
