@@ -14,6 +14,8 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     let textField = UITextField()
     
+    @IBOutlet weak var youWonLabel: UILabel!
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
@@ -32,7 +34,10 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         skView.addSubview(scene.textLayer)
         textField.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
         textField.delegate = self
+        textField.keyboardType = UIKeyboardType.ASCIICapable
         self.view.addSubview(textField)
+        
+        youWonLabel.hidden = true
     }
     
     
@@ -42,26 +47,25 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         let tiles = board.getTilesArray()
         scene.addSpritesForTiles(tiles)
         scene.initializeSelectedTile()
+        scene.updateLabel(0, row: 0)
         
-        for row in 0..<numRows {
-            for column in 0..<numColumns {
-                let tile = board.tileAtColumn(column, row: row)
-            }
-        }
     }
+    
     
     func textFieldDidChange(textField: UITextField){
         
         let s = textField.text!
+        var recentChar = s
         print(s)
-        let recentChar = s.substringFromIndex(s.endIndex.advancedBy(-1)).uppercaseString
         if s.characters.count > 1{
+            recentChar = s.substringFromIndex(s.endIndex.advancedBy(-1)).uppercaseString
             textField.text = recentChar
-        } else {
-            print("Longer than one")
         }
         board.tileAtColumn(scene.activeColumn, row: scene.activeRow).text = recentChar
-        scene.updateLabel(scene.activeColumn, row: scene.activeRow, text: recentChar)
+        scene.updateLabel(scene.activeColumn, row: scene.activeRow)
+        if board.checkIfCrossWordComplete() {
+            youWonLabel.hidden = false
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

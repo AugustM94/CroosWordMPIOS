@@ -8,13 +8,13 @@
 
 
 
-enum TileType: Int{
+enum TileType {
     // Blank = Completely unused fields(usually marked with a grey field)
     case Description, Writeable
 }
 
 class Tile{
-    var text: String?
+    var text = ""
     let tileType: TileType
     
     init(tileType: TileType){
