@@ -44,9 +44,10 @@ class DataManager{
     func parseNewUserInput(column: Int, row: Int, value: String){
         let url = NSURL(string: urlPath)
         let json = ["column":column, "row":row, "value":value]
+
         var jsonData: NSData!
         do {
-            jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+            jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         } catch {
             print("Error")
         }
@@ -54,7 +55,7 @@ class DataManager{
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         request.HTTPBody = jsonData
-        
+
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){   data, response, error in
             if error != nil{
                 print(error?.localizedDescription)
@@ -62,7 +63,7 @@ class DataManager{
             }
             do {
                 if let responseJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String:AnyObject]{
-                    print(responseJSON)
+                    print("responseJSON: \(responseJSON)")
                 }
             } catch {
                 print("error")
