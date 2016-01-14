@@ -38,7 +38,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         textField.keyboardType = UIKeyboardType.ASCIICapable
         self.view.addSubview(textField)
-        
+        dataManager.getDataFromRemote()
         youWonLabel.hidden = true
     }
     

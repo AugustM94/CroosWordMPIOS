@@ -25,11 +25,12 @@ class DataManager{
                 }
     
                 do{
+                    print(data);
                     jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                    print(JSON(jsonResult!)[0]["id"])
+                    print(JSON(jsonResult!)[0]["board"])
                     self.mostRecentFetch = JSON(jsonResult!)
                 } catch {
-                    print("error")
+                    print("error2")
                 }
          
             })
@@ -43,17 +44,21 @@ class DataManager{
     
     func parseNewUserInput(column: Int, row: Int, value: String){
         let url = NSURL(string: urlPath)
-        let json = ["column":column, "row":row, "value":value]
+        /*let json = ["col":column, "row":row, "value":value]
+        
+        
         var jsonData: NSData!
         do {
             jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         } catch {
             print("Error")
         }
-        
+        */
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
-        request.HTTPBody = jsonData
+        //request.HTTPBody = jsonData
+        let postString: String = "function=2&row=\(row)&col=\(column)&val=\(value)"
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){   data, response, error in
             if error != nil{
