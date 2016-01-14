@@ -13,29 +13,29 @@ class DataManager{
     
     
     func getDataFromRemote(){
-        let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
-    
-            let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
+        let url = NSURL(string: urlPath)
+        
+        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             var jsonResult: AnyObject?
-                print("did start action")
-                if(error != nil) {
-                    // If there is an error in the web request, print it to the console
-                    print(error!.localizedDescription)
-                }
-    
+            if(error != nil) {
+                // If there is an error in the web request, print it to the console
+                print(error!.localizedDescription)
+            }
+            else{
                 do{
-                    print(data);
+                    //print(data)
+                    
                     jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
                     print(JSON(jsonResult!)[0]["board"])
                     self.mostRecentFetch = JSON(jsonResult!)
-                } catch {
-                    print("error2")
+                } catch let caught as NSError{
+                    print("error2\(caught)")
                 }
-         
-            })
-            
-            task.resume()
+                
+            }
+        }
+        task.resume()
     }
     
     func getMostRecentFetch() -> JSON{
