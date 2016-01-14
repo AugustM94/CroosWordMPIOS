@@ -12,8 +12,8 @@
 		1FAB8C031C3BD45B005360CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB8C021C3BD45B005360CB /* Assets.xcassets */; };
 		1FAB8C061C3BD45B005360CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB8C041C3BD45B005360CB /* LaunchScreen.storyboard */; };
 		1FAB8C121C3C3DFF005360CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB8C111C3C3DFF005360CB /* Main.storyboard */; };
+		97226A761C47A4A9003EA3C1 /* crosswordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97226A751C47A4A9003EA3C1 /* crosswordsTests.swift */; };
 		97810EA81C4682B700FFB1D5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97810EA71C4682B700FFB1D5 /* SwiftyJSON.swift */; };
-		97D881891C454AC10023B625 /* crosswordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D881881C454AC10023B625 /* crosswordsTests.swift */; };
 		97D881961C4582590023B625 /* CWPuzzle.json in Resources */ = {isa = PBXBuildFile; fileRef = 97D881951C4582590023B625 /* CWPuzzle.json */; };
 		97D881981C45867E0023B625 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D881971C45867E0023B625 /* Extensions.swift */; };
 		97D8819B1C4661620023B625 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8819A1C4661620023B625 /* DataManager.swift */; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		97D8818B1C454AC10023B625 /* PBXContainerItemProxy */ = {
+		97226A781C47A4A9003EA3C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1FAB8BF01C3BD45A005360CB /* Project object */;
 			proxyType = 1;
@@ -42,9 +42,10 @@
 		1FAB8C051C3BD45B005360CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FAB8C071C3BD45B005360CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FAB8C111C3C3DFF005360CB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		97226A731C47A4A9003EA3C1 /* crosswordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crosswordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97226A751C47A4A9003EA3C1 /* crosswordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crosswordsTests.swift; sourceTree = "<group>"; };
+		97226A771C47A4A9003EA3C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97810EA71C4682B700FFB1D5 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		97D881861C454AC10023B625 /* crosswordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crosswordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		97D881881C454AC10023B625 /* crosswordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crosswordsTests.swift; sourceTree = "<group>"; };
 		97D881951C4582590023B625 /* CWPuzzle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CWPuzzle.json; sourceTree = "<group>"; };
 		97D881971C45867E0023B625 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		97D8819A1C4661620023B625 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -63,7 +64,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97D881831C454AC10023B625 /* Frameworks */ = {
+		97226A701C47A4A9003EA3C1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -77,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				1FAB8BFA1C3BD45B005360CB /* crosswords */,
-				97D881871C454AC10023B625 /* crosswordsTests */,
+				97226A741C47A4A9003EA3C1 /* crosswordsTests */,
 				1FAB8BF91C3BD45B005360CB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				1FAB8BF81C3BD45B005360CB /* crosswords.app */,
-				97D881861C454AC10023B625 /* crosswordsTests.xctest */,
+				97226A731C47A4A9003EA3C1 /* crosswordsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,11 +103,20 @@
 				1FAB8C111C3C3DFF005360CB /* Main.storyboard */,
 				1FAB8C021C3BD45B005360CB /* Assets.xcassets */,
 				1FAB8C041C3BD45B005360CB /* LaunchScreen.storyboard */,
-				1FAB8C071C3BD45B005360CB /* Info.plist */,
 				97D881971C45867E0023B625 /* Extensions.swift */,
+				1FAB8C071C3BD45B005360CB /* Info.plist */,
 				97810EA71C4682B700FFB1D5 /* SwiftyJSON.swift */,
 			);
 			path = crosswords;
+			sourceTree = "<group>";
+		};
+		97226A741C47A4A9003EA3C1 /* crosswordsTests */ = {
+			isa = PBXGroup;
+			children = (
+				97226A751C47A4A9003EA3C1 /* crosswordsTests.swift */,
+				97226A771C47A4A9003EA3C1 /* Info.plist */,
+			);
+			path = crosswordsTests;
 			sourceTree = "<group>";
 		};
 		97D8817D1C4430030023B625 /* Presentation */ = {
@@ -127,14 +137,6 @@
 				97D923781C3EA5E6003FD1B3 /* Tile.swift */,
 			);
 			name = AppLogic;
-			sourceTree = "<group>";
-		};
-		97D881871C454AC10023B625 /* crosswordsTests */ = {
-			isa = PBXGroup;
-			children = (
-				97D881881C454AC10023B625 /* crosswordsTests.swift */,
-			);
-			path = crosswordsTests;
 			sourceTree = "<group>";
 		};
 		97D881941C4581F90023B625 /* CrossWord */ = {
@@ -173,22 +175,22 @@
 			productReference = 1FAB8BF81C3BD45B005360CB /* crosswords.app */;
 			productType = "com.apple.product-type.application";
 		};
-		97D881851C454AC10023B625 /* crosswordsTests */ = {
+		97226A721C47A4A9003EA3C1 /* crosswordsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97D8818D1C454AC10023B625 /* Build configuration list for PBXNativeTarget "crosswordsTests" */;
+			buildConfigurationList = 97226A7A1C47A4AA003EA3C1 /* Build configuration list for PBXNativeTarget "crosswordsTests" */;
 			buildPhases = (
-				97D881821C454AC10023B625 /* Sources */,
-				97D881831C454AC10023B625 /* Frameworks */,
-				97D881841C454AC10023B625 /* Resources */,
+				97226A6F1C47A4A9003EA3C1 /* Sources */,
+				97226A701C47A4A9003EA3C1 /* Frameworks */,
+				97226A711C47A4A9003EA3C1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				97D8818C1C454AC10023B625 /* PBXTargetDependency */,
+				97226A791C47A4A9003EA3C1 /* PBXTargetDependency */,
 			);
 			name = crosswordsTests;
 			productName = crosswordsTests;
-			productReference = 97D881861C454AC10023B625 /* crosswordsTests.xctest */;
+			productReference = 97226A731C47A4A9003EA3C1 /* crosswordsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -205,7 +207,7 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = LG3864Q8PK;
 					};
-					97D881851C454AC10023B625 = {
+					97226A721C47A4A9003EA3C1 = {
 						CreatedOnToolsVersion = 7.2;
 						TestTargetID = 1FAB8BF71C3BD45A005360CB;
 					};
@@ -225,7 +227,7 @@
 			projectRoot = "";
 			targets = (
 				1FAB8BF71C3BD45A005360CB /* crosswords */,
-				97D881851C454AC10023B625 /* crosswordsTests */,
+				97226A721C47A4A9003EA3C1 /* crosswordsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -242,7 +244,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97D881841C454AC10023B625 /* Resources */ = {
+		97226A711C47A4A9003EA3C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,21 +271,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97D881821C454AC10023B625 /* Sources */ = {
+		97226A6F1C47A4A9003EA3C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97D881891C454AC10023B625 /* crosswordsTests.swift in Sources */,
+				97226A761C47A4A9003EA3C1 /* crosswordsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		97D8818C1C454AC10023B625 /* PBXTargetDependency */ = {
+		97226A791C47A4A9003EA3C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1FAB8BF71C3BD45A005360CB /* crosswords */;
-			targetProxy = 97D8818B1C454AC10023B625 /* PBXContainerItemProxy */;
+			targetProxy = 97226A781C47A4A9003EA3C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -391,6 +393,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = augmar.www.crosswords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -403,10 +406,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = augmar.www.crosswords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
-		97D8818E1C454AC10023B625 /* Debug */ = {
+		97226A7B1C47A4AA003EA3C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,7 +422,7 @@
 			};
 			name = Debug;
 		};
-		97D8818F1C454AC10023B625 /* Release */ = {
+		97226A7C1C47A4AA003EA3C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -451,14 +455,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97D8818D1C454AC10023B625 /* Build configuration list for PBXNativeTarget "crosswordsTests" */ = {
+		97226A7A1C47A4AA003EA3C1 /* Build configuration list for PBXNativeTarget "crosswordsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				97D8818E1C454AC10023B625 /* Debug */,
-				97D8818F1C454AC10023B625 /* Release */,
+				97226A7B1C47A4AA003EA3C1 /* Debug */,
+				97226A7C1C47A4AA003EA3C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

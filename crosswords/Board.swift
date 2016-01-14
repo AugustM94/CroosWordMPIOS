@@ -13,26 +13,12 @@ class Board {
     private var tiles: Array2D<Tile>!
     
     
+    //Builds the board, creates tiles
     init(){
         if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle("CWPuzzle") {
             numColumns = dictionary["numColumns"] as! Int
             numRows = dictionary["numRows"] as! Int
-        }
-    
-        
-        tiles = Array2D<Tile>(columns: numColumns, rows: numRows)
-    }
-    
-    func tileAtColumn(column: Int, row: Int) -> Tile!{
-        assert(column >= 0 && column < numColumns)
-        assert(row >= 0 && row < numRows)
-        return tiles[column,row]
-    }
-    
-
-    
-    func createInitialTiles(){
-        if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle("CWPuzzle") {
+            tiles = Array2D<Tile>(columns: numColumns, rows: numRows)
             if let tilesArray: AnyObject = dictionary["board"] {
                 for (row, rowArray) in (tilesArray as! [[Int]]).enumerate() {
                     for (column, type) in rowArray.enumerate() {
@@ -55,8 +41,17 @@ class Board {
                 }
             }
         }
-
+        
     }
+    
+    func tileAtColumn(column: Int, row: Int) -> Tile!{
+        assert(column >= 0 && column < numColumns)
+        assert(row >= 0 && row < numRows)
+        return tiles[column,row]
+    }
+    
+
+    
     
     func getTilesArray() -> Array2D<Tile>{
         return tiles

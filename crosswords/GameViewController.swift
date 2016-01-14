@@ -44,7 +44,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     
     func beginGame(){
-        board.createInitialTiles()
         scene.createInitialTileNodes()
         scene.addSpritesForTiles(board.getTilesArray())
         scene.initializeSelectedTile()
