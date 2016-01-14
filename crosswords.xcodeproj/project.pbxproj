@@ -45,7 +45,6 @@
 		97810EA71C4682B700FFB1D5 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		97D881861C454AC10023B625 /* crosswordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crosswordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D881881C454AC10023B625 /* crosswordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crosswordsTests.swift; sourceTree = "<group>"; };
-		97D8818A1C454AC10023B625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97D881951C4582590023B625 /* CWPuzzle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CWPuzzle.json; sourceTree = "<group>"; };
 		97D881971C45867E0023B625 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		97D8819A1C4661620023B625 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -134,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				97D881881C454AC10023B625 /* crosswordsTests.swift */,
-				97D8818A1C454AC10023B625 /* Info.plist */,
 			);
 			path = crosswordsTests;
 			sourceTree = "<group>";
