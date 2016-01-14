@@ -46,7 +46,7 @@ class DataManager{
         let json = ["column":column, "row":row, "value":value]
         var jsonData: NSData!
         do {
-            jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+            jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         } catch {
             print("Error")
         }
