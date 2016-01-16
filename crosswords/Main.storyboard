@@ -121,10 +121,18 @@
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztf-7M-JeE">
+                                <rect key="frame" x="133" y="506" width="95" height="30"/>
+                                <state key="normal" title="Update board"/>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="g7U-ZP-6Ig" eventType="touchDown" id="d8K-Wj-Xw6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="updateBoardButton" destination="Ztf-7M-JeE" id="6g0-6G-cTu"/>
                         <outlet property="youWonLabel" destination="pMQ-vy-il9" id="uSC-VQ-rOV"/>
                     </connections>
                 </viewController>

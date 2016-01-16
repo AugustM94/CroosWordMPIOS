@@ -6,6 +6,8 @@
 //  Copyright © 2016 drades. All rights reserved.
 //
 
+import Foundation
+
 var numColumns = 0
 var numRows = 0
 
@@ -41,7 +43,21 @@ class Board {
                 }
             }
         }
-        
+    }
+    
+    func getRemoteTileValue(column: Int, row: Int, boardContent: NSArray) -> String{
+            do {
+                let boardContentArray = boardContent[0]["board"] as NSArray?
+                if let dataString = (boardContentArray!.description as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
+                    let boardArray = try NSJSONSerialization.JSONObjectWithData(dataString, options: []) as! NSArray
+                    let boardArray2 = boardArray[row] as! NSArray
+                    print("Return: \(boardArray2[column])")
+                    return boardArray2[column] as! String
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        return tileAtColumn(column, row: row).text
     }
     
     func tileAtColumn(column: Int, row: Int) -> Tile!{
@@ -49,8 +65,6 @@ class Board {
         assert(row >= 0 && row < numRows)
         return tiles[column,row]
     }
-    
-
     
     
     func getTilesArray() -> Array2D<Tile>{

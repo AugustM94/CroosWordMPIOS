@@ -53,8 +53,7 @@ class GameScene: SKScene{
         }
     }
     
-    func updateLabel(column: Int, row: Int){
-        let text = board.tileAtColumn(column, row: row).text
+    func updateLabel(column: Int, row: Int, text: String){
         let label: SKLabelNode = tileNodes[column,row]?.childNodeWithName("label") as! SKLabelNode
         label.text = text
     }
@@ -75,7 +74,7 @@ class GameScene: SKScene{
         label.fontName = "HelveuticaNeue-Bold"
         node!.addChild(label)
         tileLayer.addChild(node!)
-        updateLabel(column, row: row)
+        //updateLabel(column, row: row, )
     }
     
     

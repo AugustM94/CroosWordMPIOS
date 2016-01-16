@@ -8,9 +8,9 @@
 import Foundation
 
 class DataManager{
-    var mostRecentFetch: JSON = []
+    var mostRecentFetch: NSArray!
+    //var mostRecenFetch: JSON = []
     let urlPath = "http://geniaz.com/crosswords/gamedata.php"
-    
     
     func getDataFromRemote(){
         let session = NSURLSession.sharedSession()
@@ -23,12 +23,13 @@ class DataManager{
                 print(error!.localizedDescription)
             }
             else{
-                do{
-                    //print(data)
-                    
+                do{                    
                     jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                    print(JSON(jsonResult!)[0]["board"])
-                    self.mostRecentFetch = JSON(jsonResult!)
+                    //print(JSON(jsonResult!)[0]["board"])
+                    print("jsonResult: \(jsonResult!)")
+                    
+                    self.mostRecentFetch = jsonResult as? NSArray
+                    
                 } catch let caught as NSError{
                     print("error2\(caught)")
                 }
@@ -38,7 +39,7 @@ class DataManager{
         task.resume()
     }
     
-    func getMostRecentFetch() -> JSON{
+    func getMostRecentFetch() -> NSArray{
         return mostRecentFetch
     }
     

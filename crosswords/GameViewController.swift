@@ -16,9 +16,12 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     let textField = UITextField()
     
     @IBOutlet weak var youWonLabel: UILabel!
+    @IBOutlet weak var updateBoardButton: UIButton!
+    
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
         
         //Configure view
         let skView = view as! SKView
@@ -38,16 +41,25 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         textField.keyboardType = UIKeyboardType.ASCIICapable
         self.view.addSubview(textField)
-        dataManager.getDataFromRemote()
         youWonLabel.hidden = true
     }
     
+    @IBAction func buttonClicked(sender: AnyObject) {
+        dataManager.getDataFromRemote()
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                let val = board.getRemoteTileValue(column, row: row, boardContent: dataManager.getMostRecentFetch())
+                scene.updateLabel(column, row: row,text: val)
+            }
+        }
+
+    }
     
     func beginGame(){
+        dataManager.getDataFromRemote()
         scene.createInitialTileNodes()
         scene.addSpritesForTiles(board.getTilesArray())
         scene.initializeSelectedTile()
-
     }
     
     
@@ -61,20 +73,23 @@ class GameViewController: UIViewController, UITextFieldDelegate {
             textField.text = recentChar
         }
         board.tileAtColumn(scene.activeColumn, row: scene.activeRow).text = recentChar
-        scene.updateLabel(scene.activeColumn, row: scene.activeRow)
+        scene.updateLabel(scene.activeColumn, row: scene.activeRow,text: board.tileAtColumn(scene.activeColumn, row: scene.activeRow).text)
         dataManager.parseNewUserInput(scene.activeColumn, row: scene.activeRow, value: recentChar)
+        board.getRemoteTileValue(scene.activeColumn, row: scene.activeRow, boardContent: dataManager.getMostRecentFetch())
         if board.checkIfCrossWordComplete() {
             youWonLabel.hidden = false
         }
+        
     }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches{
+            
+            
             let location = touch.locationInNode(scene.tileLayer)
             let (success, column, row) = scene.columnForPoint(location)
             if success{
-                
-                
                 if let tile = board.tileAtColumn(column, row: row){
                     if tile.tileType == TileType.Writeable {
                         scene.setActiveField(column, row: row)

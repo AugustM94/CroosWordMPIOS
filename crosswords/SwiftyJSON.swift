@@ -1,3 +1,4 @@
+
 //  SwiftyJSON.swift
 //
 //  Copyright (c) 2014 Ruoyu Fu, Pinglin Tang
@@ -19,7 +20,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-
+/*
 import Foundation
 
 // MARK: - Error
@@ -1374,3 +1375,4 @@ func >=(lhs: NSNumber, rhs: NSNumber) -> Bool {
         return lhs.compare(rhs) != NSComparisonResult.OrderedAscending
     }
 }
+*/
