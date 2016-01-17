@@ -28,7 +28,6 @@ extension Dictionary {
             if let dictionary = dictonary as? Dictionary<String, AnyObject> {
                 return dictionary
             } else {
-                print("sadsdjasdnsa")
                 return nil
             }
         } else {

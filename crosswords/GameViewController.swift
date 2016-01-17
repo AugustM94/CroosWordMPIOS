@@ -101,24 +101,29 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         mostRecentInputCharacter = recentChar
     }
     
-    /*
-    IBActions
-    */
-    
-    @IBAction func buttonClicked(sender: AnyObject) {
+    func updateContentFromRemote(){
         dataManager.getDataFromRemote()
         for row in 0..<numRows {
             for column in 0..<numColumns {
                 if let text = dataManager.getRemoteTileText(column, row: row){
                     board.tileAtColumn(column, row: row).setText(text)
-                    //scene.updateLabel(column, row: row, text: text)
                 }
             }
         }
-
-        //let val = board.getRemoteTileValue(column, row: row, boardContent: dataManager.getMostRecentFetch())
-        //scene.updateLabel(column, row: row,text: val)
         scene.updateAllTextLabels(board.getTilesArray())
+        board.checkIfCrossWordComplete()
+        if board.checkIfCrossWordComplete() {
+            youWonLabel.hidden = false
+        }
+    }
+    
+    /*
+    IBActions
+    */
+
+    
+    @IBAction func buttonClicked(sender: AnyObject) {
+        updateContentFromRemote()
     }
     
     /*

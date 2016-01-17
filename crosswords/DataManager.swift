@@ -84,21 +84,7 @@ class DataManager{
         let remoteBoardContenColumn = remoteBoardContent[row] as! NSArray
         return remoteBoardContenColumn[column] as? String
     }
-    /*
-    func getRemoteTileValue(column: Int, row: Int) -> String?{
-        do {
-            let boardContentArray = mostRecentFetch[0]["board"] as NSArray?
-            if let dataString = (boardContentArray!.description as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
-                let boardArray = try NSJSONSerialization.JSONObjectWithData(dataString, options: []) as! NSArray
-                let boardArray2 = boardArray[row] as! NSArray
-                return boardArray2[column] as? String
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-        return nil
-    }
-    */
+
     /*
         getters and setters
     */

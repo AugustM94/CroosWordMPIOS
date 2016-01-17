@@ -52,34 +52,21 @@ class Board {
         return tiles[column,row]
     }
     
-    
-    func updateBoardContent(boardContent: NSArray){
-        for row in 0..<numRows {
-            for column in 0..<numColumns {
-                let boardArrayColumn = boardContent[row] as! NSArray
-                if let newText =  boardArrayColumn[column] as? String {
-                    tileAtColumn(column, row: row).setText(newText)
-                }
-            }
-        }
-    }
-    
-    //Hard coded solution(Not flexible)
     func checkIfCrossWordComplete() -> Bool{
         for row in 0..<numRows {
             for column in 0..<numColumns {
                 let tile = tileAtColumn(column, row: row)
                 if tile.tileType == TileType.Writeable {
                     if tile.getText() != tile.getResult() {
-                        print("\(tile.getText()) and \(tile.getResult())")
                         return false
                     }
                 }
             }
         }
-        print("You won")
+        print("The crossword has been filled succesfully")
         return true
     }
+    
     
     
     func getTilesArray() -> Array2D<Tile>{
