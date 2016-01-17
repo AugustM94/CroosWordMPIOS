@@ -14,8 +14,8 @@ enum TileType: Int{
 }
 
 class Tile{
-    var text = ""
-    var result = ""
+    private var text = ""
+    private var result = ""
     let tileType: TileType
     
     
@@ -23,8 +23,25 @@ class Tile{
         self.tileType = tileType
         
     }
+    /*
+        getters and setters
+    */
+    func setText(text: String) {
+        self.text = text
+    }
     
-
+    func getText() -> String{
+        return self.text
+    }
+    
+    func setResult(result: String) {
+        self.result = result
+    }
+    
+    func getResult() -> String{
+        return self.result
+    }
+    
 }
 
 

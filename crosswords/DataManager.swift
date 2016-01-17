@@ -8,14 +8,14 @@
 import Foundation
 
 class DataManager{
-    var mostRecentFetch: NSArray!
+    var remoteBoardContent: NSArray!
     //var mostRecenFetch: JSON = []
     let urlPath = "http://geniaz.com/crosswords/gamedata.php"
     
     func getDataFromRemote(){
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: urlPath)
-        
+        print("attempt to get json from server")
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             var jsonResult: AnyObject?
             if(error != nil) {
@@ -25,23 +25,24 @@ class DataManager{
             else{
                 do{                    
                     jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                    //print(JSON(jsonResult!)[0]["board"])
-                    print("jsonResult: \(jsonResult!)")
                     
-                    self.mostRecentFetch = jsonResult as? NSArray
-                    
+                    // get the entire board as an NSArray from the JSON string
+                    let boardContentArray = jsonResult![0]["board"] as NSArray?
+                    if let dataString = (boardContentArray!.description as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
+                        let boardArray = try NSJSONSerialization.JSONObjectWithData(dataString, options: []) as! NSArray
+                        
+                        self.remoteBoardContent = boardArray
+                        print("succesfully fetched json from remote")
+                    }
                 } catch let caught as NSError{
                     print("error2\(caught)")
                 }
-                
             }
         }
         task.resume()
     }
     
-    func getMostRecentFetch() -> NSArray{
-        return mostRecentFetch
-    }
+
     
     func parseNewUserInput(column: Int, row: Int, value: String){
         let url = NSURL(string: urlPath)
@@ -79,10 +80,31 @@ class DataManager{
         
     }
     
+    func getRemoteTileText (column: Int, row: Int) -> String?{
+        let remoteBoardContenColumn = remoteBoardContent[row] as! NSArray
+        return remoteBoardContenColumn[column] as? String
+    }
+    /*
+    func getRemoteTileValue(column: Int, row: Int) -> String?{
+        do {
+            let boardContentArray = mostRecentFetch[0]["board"] as NSArray?
+            if let dataString = (boardContentArray!.description as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
+                let boardArray = try NSJSONSerialization.JSONObjectWithData(dataString, options: []) as! NSArray
+                let boardArray2 = boardArray[row] as! NSArray
+                return boardArray2[column] as? String
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        return nil
+    }
+    */
+    /*
+        getters and setters
+    */
     
     
-    
-    
-    
-    
+    func getRemoteBoardContent() -> NSArray{
+        return remoteBoardContent
+    }
 }

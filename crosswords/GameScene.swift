@@ -14,7 +14,6 @@ class GameScene: SKScene{
         fatalError("init(coder:) has not been implemented")
     }
     
-    var board: Board!
     let tileWidth: CGFloat = 50
     let tileHeight: CGFloat = 50
     
@@ -23,10 +22,11 @@ class GameScene: SKScene{
     let textLayer = UIView()
     
     let spriteSelected = SKSpriteNode(imageNamed: "tileSelected")
-    private var tileNodes = Array2D<SKNode>(columns: numColumns, rows: numColumns)
+    private var tileNodes = Array2D<SKNode>(columns: numColumns, rows: numRows)
     
     var activeColumn: Int!
     var activeRow: Int!
+    
     var viewSize: CGSize
     
     override init(size: CGSize){
@@ -58,7 +58,6 @@ class GameScene: SKScene{
         label.text = text
     }
     
-    
     // Sets the view objects for a tile
     func tileTypeHandler(column: Int, row: Int){
         let sprite = SKSpriteNode(imageNamed: "tile")
@@ -74,9 +73,18 @@ class GameScene: SKScene{
         label.fontName = "HelveuticaNeue-Bold"
         node!.addChild(label)
         tileLayer.addChild(node!)
-        //updateLabel(column, row: row, )
     }
     
+    func updateAllTextLabels(board: Array2D<Tile>){
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                if let text = board[column,row]?.getText() {
+                    print("new text: \(text), row: \(row) column: \(column)")
+                    updateLabel(column, row: row, text: text)
+                }
+            }
+        }
+    }
     
     func createInitialTileNodes(){
         for row in 0..<numRows {

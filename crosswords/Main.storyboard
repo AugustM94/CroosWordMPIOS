@@ -100,7 +100,7 @@
         <!--Game screen-->
         <scene sceneID="Zt4-xz-14d">
             <objects>
-                <viewController id="g7U-ZP-6Ig" userLabel="Game screen" customClass="GameViewController" customModule="crosswords" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameScene" id="g7U-ZP-6Ig" userLabel="Game screen" customClass="GameViewController" customModule="crosswords" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qUC-1q-m5q"/>
                         <viewControllerLayoutGuide type="bottom" id="Uc3-rb-yhD"/>

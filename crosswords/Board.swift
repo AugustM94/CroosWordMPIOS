@@ -14,7 +14,6 @@ var numRows = 0
 class Board {
     private var tiles: Array2D<Tile>!
     
-    
     //Builds the board, creates tiles
     init(){
         if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle("CWPuzzle") {
@@ -35,9 +34,9 @@ class Board {
                     for (column, text) in rowArray.enumerate() {
                         let tile = tiles[column,row]
                         if tile?.tileType == TileType.Description {
-                            tile!.text = text
+                            tile!.setText(text)
                         } else if tile?.tileType == TileType.Writeable  {
-                            tile!.result = text
+                            tile!.setResult(text)
                         }
                     }
                 }
@@ -45,20 +44,7 @@ class Board {
         }
     }
     
-    func getRemoteTileValue(column: Int, row: Int, boardContent: NSArray) -> String{
-            do {
-                let boardContentArray = boardContent[0]["board"] as NSArray?
-                if let dataString = (boardContentArray!.description as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
-                    let boardArray = try NSJSONSerialization.JSONObjectWithData(dataString, options: []) as! NSArray
-                    let boardArray2 = boardArray[row] as! NSArray
-                    print("Return: \(boardArray2[column])")
-                    return boardArray2[column] as! String
-                }
-            } catch let error as NSError {
-                print(error)
-            }
-        return tileAtColumn(column, row: row).text
-    }
+    
     
     func tileAtColumn(column: Int, row: Int) -> Tile!{
         assert(column >= 0 && column < numColumns)
@@ -67,8 +53,15 @@ class Board {
     }
     
     
-    func getTilesArray() -> Array2D<Tile>{
-        return tiles
+    func updateBoardContent(boardContent: NSArray){
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                let boardArrayColumn = boardContent[row] as! NSArray
+                if let newText =  boardArrayColumn[column] as? String {
+                    tileAtColumn(column, row: row).setText(newText)
+                }
+            }
+        }
     }
     
     //Hard coded solution(Not flexible)
@@ -77,8 +70,8 @@ class Board {
             for column in 0..<numColumns {
                 let tile = tileAtColumn(column, row: row)
                 if tile.tileType == TileType.Writeable {
-                    if tile.text != tile.result {
-                        print("\(tile.text) and \(tile.result)")
+                    if tile.getText() != tile.getResult() {
+                        print("\(tile.getText()) and \(tile.getResult())")
                         return false
                     }
                 }
@@ -86,5 +79,10 @@ class Board {
         }
         print("You won")
         return true
+    }
+    
+    
+    func getTilesArray() -> Array2D<Tile>{
+        return tiles
     }
 }
