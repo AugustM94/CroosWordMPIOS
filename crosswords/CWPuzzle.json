@@ -1,11 +1,11 @@
 {
-    "board" : [[0,1,1,1]],
+    "board" : [[1,1,1,2],[1,1,1,1],[1,1,1,1],[2,1,1,1]],
     
-    "content" : [["1:","C","O","W"]],
+    "content" : [["K","O","P",""],["A","K","I","N"],["T","R","E","E"],["2:","A","R","T"]],
     
     "numColumns": 4,
     
-    "numRows" : 1,
+    "numRows" : 4,
     
-    "hints" : ["1: Animal with C"],
+    "hints" : ["CLUES ACROSS \n 1: Bank of terracing at football ground \n 4: Of a similiar nature \n 6: A branching stand \n 7: A wile, trick \n CLUES DOWN \n 1: Ancient egyptian unit of weight \n 2: Gumbo \n 3: Buttress, gate pillar \n 5: Fabric knotted into meshes"],
 }

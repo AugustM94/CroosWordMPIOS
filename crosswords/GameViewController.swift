@@ -28,7 +28,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         //Configure view
         let skView = view as! SKView
-        
         //Create and configure scene
  
         board = Board()
@@ -38,9 +37,12 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         //Present the scene
         skView.presentScene(scene)
         skView.addSubview(scene.textLayer)
+
         hintsLabel.text = scene.returnHintsAtIndex(0)
-        hintsLabel.frame = CGRectMake(view.frame.width/2, view.frame.height/3, 200, 50)
-        hintsLabel.textColor = UIColor.whiteColor()
+        hintsLabel.frame = CGRectMake(view.frame.width/2-150, view.frame.height/6, 300, 500)
+        hintsLabel.textColor = UIColor.blackColor()
+        hintsLabel.textAlignment = NSTextAlignment.Center
+        
         hiddenInputTextField.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
         hiddenInputTextField.delegate = self
         hiddenInputTextField.keyboardType = UIKeyboardType.ASCIICapable

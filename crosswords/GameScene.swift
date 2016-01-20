@@ -17,7 +17,6 @@ class GameScene: SKScene{
     let tileWidth: CGFloat = 50
     let tileHeight: CGFloat = 50
     
-    let gameLayer = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(30, 30))
     let tileLayer = SKNode()
     let textLayer = UIView()
     
@@ -32,6 +31,8 @@ class GameScene: SKScene{
     override init(size: CGSize){
         viewSize = size
         super.init(size: size)
+
+        self.backgroundColor = UIColor(red: 223/255, green: 222/255, blue: 222/255, alpha: 1)
         anchorPoint = CGPoint(x:0.5, y:0.5)
         addChild(tileLayer)
     }
@@ -48,7 +49,7 @@ class GameScene: SKScene{
     func addSpritesForTiles(tiles: Array2D<Tile>){
         for row in 0..<numRows {
             for column in 0..<numColumns {
-                tileTypeHandler(column, row: row)
+                tileTypeHandler(column, row: row, type: tiles[column, row]!.tileType)
             }
         }
     }
@@ -59,8 +60,13 @@ class GameScene: SKScene{
     }
     
     // Sets the view objects for a tile
-    func tileTypeHandler(column: Int, row: Int){
-        let sprite = SKSpriteNode(imageNamed: "tile")
+    func tileTypeHandler(column: Int, row: Int, type: TileType){
+        var sprite = SKSpriteNode(imageNamed: "tile")
+        if type == TileType.Description{
+            sprite = SKSpriteNode(imageNamed: "tileDescription")
+        } else if type == TileType.Empty{
+            sprite = SKSpriteNode(imageNamed: "tileEmpty")
+        }
         sprite.position = pointForColumn(column,row: row)
         let node = tileNodes[column,row]
         node!.addChild(sprite)
@@ -100,8 +106,11 @@ class GameScene: SKScene{
     }
 
     func pointForColumn(column: Int, row: Int) -> CGPoint {
-        return CGPoint(x: CGFloat(column) * tileWidth + tileWidth/2, y: CGFloat(row) * tileHeight + tileHeight/2)
+        let horizontalShift = (-1) * CGFloat(numColumns) * tileWidth/2;
 
+        return CGPoint(
+            x: CGFloat(column) * tileWidth + tileWidth/2 + horizontalShift,
+            y: (CGFloat(row) * (-1) * tileHeight) + tileHeight/2 )
     }
     
     func returnHintsAtIndex(index: Int) -> String?{
@@ -114,9 +123,16 @@ class GameScene: SKScene{
     
     //Get row and column for clicked tile
     func columnForPoint(point: CGPoint) -> (success: Bool, coloumn: Int, row: Int){
-        if(point.x >= 0 && point.x <= tileWidth * CGFloat(numColumns)
-            && point.y >= 0 && point.y <= tileHeight * CGFloat(numRows)){
-            return (true, Int(point.x/tileWidth),Int(point.y/tileHeight))
+        let horizontalShift = (-1) * CGFloat(numColumns) * tileWidth/2
+        print("")
+        print(tileHeight)
+        print((-1)*CGFloat(numRows+1) * tileHeight/2 )
+        print(point)
+        if(point.x >= horizontalShift &&
+            point.x <= tileWidth * CGFloat(numColumns) + horizontalShift &&
+            point.y <= tileHeight &&
+            point.y >= (-1)*CGFloat(numRows+1) * tileHeight ){
+            return (true, Int((point.x-horizontalShift)/tileWidth),Int((-1)*point.y/tileHeight+1))
         }
         return (false, 0,0)
     }
