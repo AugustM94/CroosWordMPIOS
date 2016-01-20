@@ -8,6 +8,8 @@
 
 import Foundation
 
+var dataManager: DataManager!
+
 var numColumns = 0
 var numRows = 0
 
@@ -16,6 +18,8 @@ class Board {
     
     //Builds the board, creates tiles
     init(){
+        dataManager = DataManager()
+        
         if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle("CWPuzzle") {
             numColumns = dictionary["numColumns"] as! Int
             numRows = dictionary["numRows"] as! Int
@@ -44,7 +48,11 @@ class Board {
         }
     }
     
-    
+    func changeTileTextAtColumn(column: Int, row: Int, text: String){
+        tileAtColumn(column, row: row).setText(text)
+        dataManager.addTaskToQueue(column, row: row, value: text)
+        dataManager.uploadDataQueueToRemote()
+    }
     
     func tileAtColumn(column: Int, row: Int) -> Tile!{
         assert(column >= 0 && column < numColumns)
@@ -67,9 +75,21 @@ class Board {
         return true
     }
     
-    
+    func updateContentFromRemote(){
+        dataManager.getDataFromRemote()
+        if dataManager.succesfullyFetchedFromRemote {
+            for row in 0..<numRows {
+                for column in 0..<numColumns {
+                    if let text = dataManager.getRemoteTileText(column, row: row){
+                        tileAtColumn(column, row: row).setText(text)
+                    }
+                }
+            }
+        }
+    }
     
     func getTilesArray() -> Array2D<Tile>{
         return tiles
     }
+    
 }

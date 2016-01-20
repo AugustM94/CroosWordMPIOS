@@ -36,7 +36,8 @@ class crosswordsTests: XCTestCase {
         }
     }
     
-    func testSuccessfulCheck(){
+    //Tests with correct input and no input
+    func testSuccessfulCheck1(){
 
         //Test: No input - Should return false
         XCTAssertFalse(board.checkIfCrossWordComplete())
@@ -46,7 +47,7 @@ class crosswordsTests: XCTestCase {
             for column in 0..<numColumns {
                 let tile = board.tileAtColumn(column, row: row)
                 if tile.tileType == TileType.Writeable {
-                    tile.text = tile.result
+                    tile.setText(tile.getResult())
                 }
             }
         }
@@ -54,11 +55,19 @@ class crosswordsTests: XCTestCase {
         XCTAssertTrue(board.checkIfCrossWordComplete())
         
         
-        //Test that a wrong input returns false
-        //Change one paramter
-        let tile = board.tileAtColumn(1, row: 0)
-        tile.text = "B"
+
+        
+    }
+    //Tests with incorrect in inputs
+    func testSuccessfulCheck2(){
+        board = Board()
+        board.tileAtColumn(1, row: 0).setText("A")
+        board.tileAtColumn(2, row: 0).setText("A")
+        board.tileAtColumn(3, row: 0).setText("A")
+        
+        //Test that wrong input returns false.
         XCTAssertFalse(board.checkIfCrossWordComplete())
+        
         
     }
     
@@ -75,9 +84,9 @@ class crosswordsTests: XCTestCase {
             for column in 0..<numColumns {
                 let tile = board.tileAtColumn(column, row: row)
                 if tile.tileType == TileType.Writeable {
-                    XCTAssertEqual("",tile.text)
+                    XCTAssertEqual("",tile.getText())
                 } else if tile.tileType == TileType.Description {
-                    XCTAssertNotEqual("",tile.text)
+                    XCTAssertNotEqual("",tile.getText())
                 }
             }
         }
@@ -88,10 +97,19 @@ class crosswordsTests: XCTestCase {
     }
 
 
-    func testTileAtColumn() {
-        //Access a tile
-        //XCTAssert((board.tileAtColumn(1, row: 0)) != nil)
+    func testChangeTileTextAtColumn() {
+        //Create the board.
+        board = Board()
+        //Test if the writeable tile text is empty before the text is changed/added
+        XCTAssertEqual(board.tileAtColumn(1, row: 0).getText(), "")
+        
+        //Change the tile text:
+        board.changeTileTextAtColumn(1, row: 0, text: "A")
+        //Test if the tile text has been changed to "A"
+        XCTAssertEqual(board.tileAtColumn(1, row: 0).getText(), "A")
+
     }
+    
     
     
     

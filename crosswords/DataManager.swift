@@ -9,12 +9,15 @@ import Foundation
 
 class DataManager{
     var remoteBoardContent: NSArray!
+    var succesfullyFetchedFromRemote = false
+    var dataQueue: [(Int, Int, String)] = []
     //var mostRecenFetch: JSON = []
-    let urlPath = "http://geniaz.com/crosswords/gamedata.php"
+    let urlPath = "http://geniaz.com/crosswords/crosswordgamedata.php"
     
+
     func getDataFromRemote(){
         let session = NSURLSession.sharedSession()
-        let url = NSURL(string: urlPath)
+        let url = NSURL(string: self.urlPath)
         print("attempt to get json from server")
         let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
             var jsonResult: AnyObject?
@@ -25,13 +28,14 @@ class DataManager{
             else{
                 do{                    
                     jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                    
+                    print(jsonResult)
                     // get the entire board as an NSArray from the JSON string
                     let boardContentArray = jsonResult![0]["board"] as NSArray?
                     if let dataString = (boardContentArray!.description as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
                         let boardArray = try NSJSONSerialization.JSONObjectWithData(dataString, options: []) as! NSArray
                         
                         self.remoteBoardContent = boardArray
+                        self.succesfullyFetchedFromRemote = true
                         print("succesfully fetched json from remote")
                     }
                 } catch let caught as NSError{
@@ -44,40 +48,61 @@ class DataManager{
     
 
     
-    func parseNewUserInput(column: Int, row: Int, value: String){
-        let url = NSURL(string: urlPath)
-        /*let json = ["col":column, "row":row, "value":value]
-        
-        
-        var jsonData: NSData!
-        do {
-            jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
-        } catch {
-            print("Error")
-        }
-        */
+    func uploadNewUserInput(column: Int, row: Int, value: String){
+        //addTaskToQueue(column, row: row, value: value)
+        let url = NSURL(string: self.urlPath)
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         //request.HTTPBody = jsonData
         let postString: String = "function=2&row=\(row)&col=\(column)&val=\(value)"
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){   data, response, error in
             if error != nil{
                 print(error?.localizedDescription)
+                print("add user input to queue")
                 return
-            }
-            do {
-                if let responseJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String:AnyObject]{
-                    print(responseJSON)
+            } else if data != nil{
+                var responseString: NSString = ""
+                responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                if responseString == "1" {
+                    print("succesful upload")
+                    print("row=\(row)&col=\(column)&val=\(value)")
+                    self.removeTaskFromQueue(column, row: row)
+                } else {
+                    print("add user input to queue")
                 }
-            } catch {
-                print("error")
+            }
+            
+        }
+        print("dataQueue: \(dataQueue.count)")
+        task.resume()
+    }
+    
+    func uploadDataQueueToRemote(){
+        for dataTask in dataQueue {
+            uploadNewUserInput(dataTask.0, row: dataTask.1, value: dataTask.2)
+            //print("Column: \(dataTask.0), Row: \(dataTask.1), Value: \(dataTask.2)")
+        }
+    }
+    
+    func removeTaskFromQueue(column: Int, row: Int){
+        print(dataQueue.count)
+        for (index, dataTask) in dataQueue.enumerate(){
+            if dataTask.0 == column && dataTask.1 == row{
+                dataQueue.removeAtIndex(index)
+                print("Removal: \"(index)")
             }
         }
-        
-        task.resume()
-        
+    }
+    
+    func addTaskToQueue(column: Int, row: Int, value: String){
+        for (index, dataTask) in dataQueue.enumerate(){
+            if dataTask.0 == column && dataTask.1 == row{
+                dataQueue[index] = (column, row, value)
+                return
+            }
+        }
+        dataQueue.append((column,row,value))
     }
     
     func getRemoteTileText (column: Int, row: Int) -> String?{

@@ -6,4 +6,6 @@
     "numColumns": 4,
     
     "numRows" : 1,
+    
+    "hints" : ["1: Animal with C"],
 }

@@ -79,7 +79,6 @@ class GameScene: SKScene{
         for row in 0..<numRows {
             for column in 0..<numColumns {
                 if let text = board[column,row]?.getText() {
-                    print("new text: \(text), row: \(row) column: \(column)")
                     updateLabel(column, row: row, text: text)
                 }
             }
@@ -98,11 +97,19 @@ class GameScene: SKScene{
     func setActiveField(column: Int, row: Int){
         activeColumn = column
         activeRow = row
-        print("Selected field: \(activeColumn),\(activeRow)")
     }
 
     func pointForColumn(column: Int, row: Int) -> CGPoint {
         return CGPoint(x: CGFloat(column) * tileWidth + tileWidth/2, y: CGFloat(row) * tileHeight + tileHeight/2)
+
+    }
+    
+    func returnHintsAtIndex(index: Int) -> String?{
+        if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle("CWPuzzle") {
+            let hints = dictionary["hints"] as! [String]
+            return hints[index]
+        }
+        return nil
     }
     
     //Get row and column for clicked tile

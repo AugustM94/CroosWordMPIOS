@@ -11,8 +11,8 @@ import SpriteKit
 class GameViewController: UIViewController, UITextFieldDelegate {
     var scene: GameScene!
     var board: Board!
-    var dataManager: DataManager!
     
+    let hintsLabel = UILabel()
     let hiddenInputTextField = UITextField()
     
     // Variables
@@ -30,7 +30,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         let skView = view as! SKView
         
         //Create and configure scene
-        dataManager = DataManager()
+ 
         board = Board()
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFill
@@ -38,10 +38,14 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         //Present the scene
         skView.presentScene(scene)
         skView.addSubview(scene.textLayer)
+        hintsLabel.text = scene.returnHintsAtIndex(0)
+        hintsLabel.frame = CGRectMake(view.frame.width/2, view.frame.height/3, 200, 50)
+        hintsLabel.textColor = UIColor.whiteColor()
         hiddenInputTextField.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
         hiddenInputTextField.delegate = self
         hiddenInputTextField.keyboardType = UIKeyboardType.ASCIICapable
         self.view.addSubview(hiddenInputTextField)
+        self.view.addSubview(hintsLabel)
         youWonLabel.hidden = true
         beginGame()
     }
@@ -57,7 +61,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
                     if tile.tileType == TileType.Writeable {
                         scene.setActiveField(column, row: row)
                         scene.moveSelectedTile(scene.spriteSelected, column: column, row: row)
-                        print("Text field became first responder")
                         hiddenInputTextField.becomeFirstResponder()
                     } else {
                         hiddenInputTextField.endEditing(true)
@@ -71,7 +74,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     }
     
     func beginGame(){
-        dataManager.getDataFromRemote() // move to dataManager init
         scene.createInitialTileNodes()
         scene.addSpritesForTiles(board.getTilesArray())
         scene.initializeSelectedTile()
@@ -81,9 +83,9 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidChange(textField: UITextField){
         updateMostRecentInputCharacter(textField)
-        board.tileAtColumn(scene.activeColumn, row: scene.activeRow).setText(mostRecentInputCharacter)
+        board.changeTileTextAtColumn(scene.activeColumn, row: scene.activeRow, text: mostRecentInputCharacter)
         scene.updateLabel(scene.activeColumn, row: scene.activeRow,text: board.tileAtColumn(scene.activeColumn, row: scene.activeRow).getText())
-        dataManager.parseNewUserInput(scene.activeColumn, row: scene.activeRow, value: mostRecentInputCharacter)
+        
         if board.checkIfCrossWordComplete() {
             youWonLabel.hidden = false
         }
@@ -93,7 +95,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     func updateMostRecentInputCharacter(textField: UITextField){
         let s = textField.text!
         var recentChar = s
-        print(s)
         if s.characters.count > 1{
             recentChar = s.substringFromIndex(s.endIndex.advancedBy(-1)).uppercaseString
             textField.text = recentChar
@@ -101,21 +102,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         mostRecentInputCharacter = recentChar
     }
     
-    func updateContentFromRemote(){
-        dataManager.getDataFromRemote()
-        for row in 0..<numRows {
-            for column in 0..<numColumns {
-                if let text = dataManager.getRemoteTileText(column, row: row){
-                    board.tileAtColumn(column, row: row).setText(text)
-                }
-            }
-        }
-        scene.updateAllTextLabels(board.getTilesArray())
-        board.checkIfCrossWordComplete()
-        if board.checkIfCrossWordComplete() {
-            youWonLabel.hidden = false
-        }
-    }
+
     
     /*
     IBActions
@@ -123,7 +110,11 @@ class GameViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBAction func buttonClicked(sender: AnyObject) {
-        updateContentFromRemote()
+        board.updateContentFromRemote()
+        scene.updateAllTextLabels(board.getTilesArray())
+        if board.checkIfCrossWordComplete() {
+            youWonLabel.hidden = false
+        }
     }
     
     /*
