@@ -14,6 +14,8 @@ class GameScene: SKScene{
         fatalError("init(coder:) has not been implemented")
     }
     
+    var hintIndex = 1
+    
     let tileWidth: CGFloat = 50
     let tileHeight: CGFloat = 50
     
@@ -62,9 +64,7 @@ class GameScene: SKScene{
     // Sets the view objects for a tile
     func tileTypeHandler(column: Int, row: Int, type: TileType){
         var sprite = SKSpriteNode(imageNamed: "tile")
-        if type == TileType.Description{
-            sprite = SKSpriteNode(imageNamed: "tileDescription")
-        } else if type == TileType.Empty{
+        if type == TileType.Empty{
             sprite = SKSpriteNode(imageNamed: "tileEmpty")
         }
         sprite.anchorPoint = CGPoint(x:0.0, y:0.0)
@@ -80,7 +80,21 @@ class GameScene: SKScene{
         label.zPosition = 1
         label.verticalAlignmentMode = .Center
         label.fontName = "HelveuticaNeue-Bold"
+        label.fontColor = UIColor.blackColor()
         node!.addChild(label)
+        if type == TileType.Description{
+            let hintIndexLabel = SKLabelNode()
+            hintIndexLabel.position = pointForColumn(column, row: row)
+            hintIndexLabel.position = CGPointMake(hintIndexLabel.position.x +  tileWidth/4, hintIndexLabel.position.y + tileHeight/1.65)
+            hintIndexLabel.verticalAlignmentMode = .Bottom
+            hintIndexLabel.fontName = "HelveuticaNeue-Bold"
+            hintIndexLabel.text = "\(hintIndex)"
+            hintIndexLabel.fontSize = 20
+            hintIndexLabel.zPosition = 2
+            hintIndexLabel.fontColor = UIColor.blackColor()
+            hintIndex++
+            node!.addChild(hintIndexLabel)
+        }
         tileLayer.addChild(node!)
     }
     

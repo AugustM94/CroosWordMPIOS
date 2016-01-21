@@ -1,11 +1,11 @@
 {
-    "board" : [[1,1,1,2],[1,1,1,1],[1,1,1,1],[2,1,1,1]],
+    "board" : [[2,0,2,0,1,0,1],[0,1,1,1,2,1,2],[2,1,2,1,2,1,2],[0,1,1,1,1,1,1],[2,1,2,1,2,1,2],[2,1,2,0,1,1,1],[0,1,1,1,2,1,2]],
     
-    "content" : [["K","O","P",""],["A","K","I","N"],["T","R","E","E"],["2:","A","R","T"]],
+    "content" : [["","S","","W","E","A","K"],["B","L","U","E","","D",""],["","I","","D","","D",""],["S","P","I","D","E","R","S"],["","P","","I","","E",""],["","E","","N","E","S","T"],["F","R","O","G","","S",""]],
     
-    "numColumns": 4,
+    "numColumns": 7,
     
-    "numRows" : 4,
-    
-    "hints" : ["CLUES ACROSS \n 1: Bank of terracing at football ground \n 4: Of a similiar nature \n 6: A branching stand \n 7: A wile, trick \n CLUES DOWN \n 1: Ancient egyptian unit of weight \n 2: Gumbo \n 3: Buttress, gate pillar \n 5: Fabric knotted into meshes"],
+    "numRows" : 7,
+        
+    "hints" : ["\b(CLUES ACROSS) \n 2 The opposite of strong \n 4 A sky colour \n 5 Creatures that make webs \n 6 A bird builds this \n 7 A green animal that croaks \n\n CLUES DOWN \n 1 A soft, comfortable kind of shoe worn indoors \n 2 The time when a man and a woman get married \n 3 Write someone's name and _____ on an envelope"],
 }

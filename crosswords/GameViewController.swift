@@ -38,9 +38,10 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         skView.presentScene(scene)
 
         hintsLabel.text = scene.returnHintsAtIndex(0)
-        hintsLabel.frame = CGRectMake(view.frame.width/2-150, -100, 300, 500)
+        hintsLabel.numberOfLines = 0
+        hintsLabel.frame = CGRectMake(view.frame.width/2-225, 0, 450, 400)
         hintsLabel.textColor = UIColor.blackColor()
-        hintsLabel.textAlignment = NSTextAlignment.Center
+        hintsLabel.textAlignment = .Center
         
         hiddenInputTextField.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
         hiddenInputTextField.delegate = self
@@ -59,7 +60,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
             let (success, column, row) = scene.columnForPoint(location)
             if success{
                 if let tile = board.tileAtColumn(column, row: row){
-                    if tile.tileType == TileType.Writeable {
+                    if tile.tileType == TileType.Writeable || tile.tileType == TileType.Description{
                         scene.setActiveField(column, row: row)
                         scene.moveSelectedTile(scene.spriteSelected, column: column, row: row)
                         hiddenInputTextField.becomeFirstResponder()

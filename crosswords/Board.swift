@@ -37,9 +37,7 @@ class Board {
                 for (row, rowArray) in (tilesArray as! [[String]]).enumerate() {
                     for (column, text) in rowArray.enumerate() {
                         let tile = tiles[column,row]
-                        if tile?.tileType == TileType.Description {
-                            tile!.setText(text)
-                        } else if tile?.tileType == TileType.Writeable  {
+                        if tile?.tileType == TileType.Writeable || tile?.tileType == TileType.Description{
                             tile!.setResult(text)
                         }
                     }
