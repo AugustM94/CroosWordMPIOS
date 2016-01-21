@@ -143,16 +143,11 @@ class GameScene: SKScene{
         let horizontalShift = CGFloat(numColumns) * tileWidth/2;
         let x = point.x + horizontalShift
         let y = (-1) * (point.y - 2 * tileHeight)
-
-        print(point)
-        print(x)
-        print(y)
         
         if(x >= 0 &&
             x <= CGFloat(numColumns) * tileWidth &&
             y >= 0 &&
             y <= CGFloat(numRows) * tileHeight){
-                print("success")
             return (true, Int(x/tileWidth),Int(y/tileHeight))
         }
         return (false, 0,0)

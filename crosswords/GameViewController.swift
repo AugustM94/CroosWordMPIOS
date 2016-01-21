@@ -39,7 +39,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
 
         hintsLabel.text = scene.returnHintsAtIndex(0)
         hintsLabel.numberOfLines = 0
-        hintsLabel.frame = CGRectMake(view.frame.width/2-225, 0, 450, 400)
+        hintsLabel.frame = CGRectMake(view.frame.width/2-225, 40, 450, 400)
         hintsLabel.textColor = UIColor.blackColor()
         hintsLabel.textAlignment = .Center
         
