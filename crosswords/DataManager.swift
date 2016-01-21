@@ -54,7 +54,7 @@ class DataManager{
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         //request.HTTPBody = jsonData
-        let postString: String = "function=2&row=\(row)&col=\(column)&val=\(value)"
+        let postString: String = "function=1&row=\(row)&col=\(column)&val=\(value)"
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){   data, response, error in
             if error != nil{

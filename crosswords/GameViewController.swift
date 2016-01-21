@@ -36,10 +36,9 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         //Present the scene
         skView.presentScene(scene)
-        skView.addSubview(scene.textLayer)
 
         hintsLabel.text = scene.returnHintsAtIndex(0)
-        hintsLabel.frame = CGRectMake(view.frame.width/2-150, view.frame.height/6, 300, 500)
+        hintsLabel.frame = CGRectMake(view.frame.width/2-150, -100, 300, 500)
         hintsLabel.textColor = UIColor.blackColor()
         hintsLabel.textAlignment = NSTextAlignment.Center
         

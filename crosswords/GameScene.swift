@@ -18,9 +18,9 @@ class GameScene: SKScene{
     let tileHeight: CGFloat = 50
     
     let tileLayer = SKNode()
-    let textLayer = UIView()
     
     let spriteSelected = SKSpriteNode(imageNamed: "tileSelected")
+    
     private var tileNodes = Array2D<SKNode>(columns: numColumns, rows: numRows)
     
     var activeColumn: Int!
@@ -31,9 +31,9 @@ class GameScene: SKScene{
     override init(size: CGSize){
         viewSize = size
         super.init(size: size)
-
         self.backgroundColor = UIColor(red: 223/255, green: 222/255, blue: 222/255, alpha: 1)
         anchorPoint = CGPoint(x:0.5, y:0.5)
+        spriteSelected.anchorPoint = CGPoint(x:0.0, y:0.0)
         addChild(tileLayer)
     }
     
@@ -67,11 +67,14 @@ class GameScene: SKScene{
         } else if type == TileType.Empty{
             sprite = SKSpriteNode(imageNamed: "tileEmpty")
         }
+        sprite.anchorPoint = CGPoint(x:0.0, y:0.0)
         sprite.position = pointForColumn(column,row: row)
         let node = tileNodes[column,row]
+        
         node!.addChild(sprite)
         let label = SKLabelNode()
         label.position = pointForColumn(column, row: row)
+        label.position = CGPointMake(label.position.x + tileWidth/2, label.position.y + tileHeight/2)
         label.name = "label"
         //Bring the label to front
         label.zPosition = 1
@@ -106,11 +109,11 @@ class GameScene: SKScene{
     }
 
     func pointForColumn(column: Int, row: Int) -> CGPoint {
-        let horizontalShift = (-1) * CGFloat(numColumns) * tileWidth/2;
+        let horizontalShift = CGFloat(numColumns) * tileWidth/2;
 
         return CGPoint(
-            x: CGFloat(column) * tileWidth + tileWidth/2 + horizontalShift,
-            y: (CGFloat(row) * (-1) * tileHeight) + tileHeight/2 )
+            x: CGFloat(column) * tileWidth - horizontalShift,
+            y: (CGFloat(row) * (-1) * tileHeight + tileHeight))
     }
     
     func returnHintsAtIndex(index: Int) -> String?{
@@ -123,16 +126,20 @@ class GameScene: SKScene{
     
     //Get row and column for clicked tile
     func columnForPoint(point: CGPoint) -> (success: Bool, coloumn: Int, row: Int){
-        let horizontalShift = (-1) * CGFloat(numColumns) * tileWidth/2
-        print("")
-        print(tileHeight)
-        print((-1)*CGFloat(numRows+1) * tileHeight/2 )
+        let horizontalShift = CGFloat(numColumns) * tileWidth/2;
+        let x = point.x + horizontalShift
+        let y = (-1) * (point.y - 2 * tileHeight)
+
         print(point)
-        if(point.x >= horizontalShift &&
-            point.x <= tileWidth * CGFloat(numColumns) + horizontalShift &&
-            point.y <= tileHeight &&
-            point.y >= (-1)*CGFloat(numRows+1) * tileHeight ){
-            return (true, Int((point.x-horizontalShift)/tileWidth),Int((-1)*point.y/tileHeight+1))
+        print(x)
+        print(y)
+        
+        if(x >= 0 &&
+            x <= CGFloat(numColumns) * tileWidth &&
+            y >= 0 &&
+            y <= CGFloat(numRows) * tileHeight){
+                print("success")
+            return (true, Int(x/tileWidth),Int(y/tileHeight))
         }
         return (false, 0,0)
     }
