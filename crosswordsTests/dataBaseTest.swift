@@ -28,11 +28,5 @@ class dataBaseTest: XCTestCase {
 
         //XCTAssertNotNil(dataManager.remoteBoardContent)
     }
-    
-    func testParseNewUserInput() {
-        
-    }
-
-
 
 }

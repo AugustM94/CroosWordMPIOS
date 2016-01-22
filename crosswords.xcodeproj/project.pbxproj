@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1FAB8BFC1C3BD45B005360CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB8BFB1C3BD45B005360CB /* AppDelegate.swift */; };
-		1FAB8BFE1C3BD45B005360CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB8BFD1C3BD45B005360CB /* ViewController.swift */; };
 		1FAB8C031C3BD45B005360CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB8C021C3BD45B005360CB /* Assets.xcassets */; };
 		1FAB8C061C3BD45B005360CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB8C041C3BD45B005360CB /* LaunchScreen.storyboard */; };
 		1FAB8C121C3C3DFF005360CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB8C111C3C3DFF005360CB /* Main.storyboard */; };
 		97226A761C47A4A9003EA3C1 /* crosswordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97226A751C47A4A9003EA3C1 /* crosswordsTests.swift */; };
-		97810EA81C4682B700FFB1D5 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97810EA71C4682B700FFB1D5 /* SwiftyJSON.swift */; };
 		97974A3E1C4BD9D400D0492D /* dataBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97974A3D1C4BD9D400D0492D /* dataBaseTest.swift */; };
 		97D881961C4582590023B625 /* CWPuzzle.json in Resources */ = {isa = PBXBuildFile; fileRef = 97D881951C4582590023B625 /* CWPuzzle.json */; };
 		97D881981C45867E0023B625 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D881971C45867E0023B625 /* Extensions.swift */; };
@@ -38,7 +36,6 @@
 /* Begin PBXFileReference section */
 		1FAB8BF81C3BD45B005360CB /* crosswords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crosswords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAB8BFB1C3BD45B005360CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FAB8BFD1C3BD45B005360CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1FAB8C021C3BD45B005360CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FAB8C051C3BD45B005360CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FAB8C071C3BD45B005360CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,7 +43,6 @@
 		97226A731C47A4A9003EA3C1 /* crosswordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crosswordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97226A751C47A4A9003EA3C1 /* crosswordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crosswordsTests.swift; sourceTree = "<group>"; };
 		97226A771C47A4A9003EA3C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		97810EA71C4682B700FFB1D5 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		97974A3D1C4BD9D400D0492D /* dataBaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataBaseTest.swift; sourceTree = "<group>"; };
 		97D881951C4582590023B625 /* CWPuzzle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CWPuzzle.json; sourceTree = "<group>"; };
 		97D881971C45867E0023B625 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -107,7 +103,6 @@
 				1FAB8C041C3BD45B005360CB /* LaunchScreen.storyboard */,
 				97D881971C45867E0023B625 /* Extensions.swift */,
 				1FAB8C071C3BD45B005360CB /* Info.plist */,
-				97810EA71C4682B700FFB1D5 /* SwiftyJSON.swift */,
 			);
 			path = crosswords;
 			sourceTree = "<group>";
@@ -125,7 +120,6 @@
 		97D8817D1C4430030023B625 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				1FAB8BFD1C3BD45B005360CB /* ViewController.swift */,
 				97D9237C1C3EBAC5003FD1B3 /* GameViewController.swift */,
 				97D9237E1C3EBB96003FD1B3 /* GameScene.swift */,
 			);
@@ -208,6 +202,7 @@
 				TargetAttributes = {
 					1FAB8BF71C3BD45A005360CB = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 33V3XZ752C;
 					};
 					97226A721C47A4A9003EA3C1 = {
 						CreatedOnToolsVersion = 7.2;
@@ -260,10 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAB8BFE1C3BD45B005360CB /* ViewController.swift in Sources */,
 				97D923791C3EA5E6003FD1B3 /* Tile.swift in Sources */,
 				97D9237B1C3EAAFA003FD1B3 /* Board.swift in Sources */,
-				97810EA81C4682B700FFB1D5 /* SwiftyJSON.swift in Sources */,
 				97D881981C45867E0023B625 /* Extensions.swift in Sources */,
 				97D923771C3EA115003FD1B3 /* Array2D.swift in Sources */,
 				97D9237D1C3EBAC5003FD1B3 /* GameViewController.swift in Sources */,
@@ -392,10 +385,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = crosswords/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = augmar.www.crosswords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -405,10 +400,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = crosswords/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = augmar.www.crosswords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
